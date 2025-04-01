@@ -15,7 +15,7 @@ import java.util.Optional;
 
 
 
-class CardStatusJDBCDaoImpl implements Dao<CardStatus> {
+public class CardStatusJDBCDaoImpl implements Dao<CardStatus> {
         private static final String CREATE_TABLE_SQL = """
     CREATE TABLE IF NOT EXISTS card_status(id SERIAL PRIMARY KEY, card_status_name VARCHAR(255));
     """;
@@ -51,6 +51,8 @@ class CardStatusJDBCDaoImpl implements Dao<CardStatus> {
             SET card_status_name = ?
             WHERE id = ?
             """;
+
+    public CardStatusJDBCDaoImpl() {}
 
     @Override
     public void createTable() {

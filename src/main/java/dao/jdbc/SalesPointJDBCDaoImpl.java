@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-class SalesPointJDBCDaoImpl implements Dao<SalesPoint> {
+public class SalesPointJDBCDaoImpl implements Dao<SalesPoint> {
     private static final String CREATE_TABLE_SQL = """
     CREATE TABLE IF NOT EXISTS sales_point(
         id SERIAL PRIMARY KEY,
@@ -60,6 +60,8 @@ class SalesPointJDBCDaoImpl implements Dao<SalesPoint> {
                 acquiring_bank_id = ?
             WHERE id = ?
             """;
+
+    public SalesPointJDBCDaoImpl() {}
 
     @Override
     public void createTable() {

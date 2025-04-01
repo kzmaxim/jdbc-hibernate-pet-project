@@ -15,7 +15,7 @@ import java.util.Optional;
 
 
 
-class AcquiringBankJDBCDaoImpl implements Dao<AcquiringBank> {
+public class AcquiringBankJDBCDaoImpl implements Dao<AcquiringBank> {
     private static final String CREATE_TABLE_SQL = """
     CREATE TABLE IF NOT EXISTS acquiring_bank(
         id SERIAL PRIMARY KEY,
@@ -56,6 +56,8 @@ class AcquiringBankJDBCDaoImpl implements Dao<AcquiringBank> {
                 abbreviated_name = ?
             WHERE id = ?
             """;
+
+    public AcquiringBankJDBCDaoImpl() {}
 
     @Override
     public void createTable() {

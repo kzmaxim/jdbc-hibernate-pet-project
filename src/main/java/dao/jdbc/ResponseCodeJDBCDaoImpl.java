@@ -15,7 +15,7 @@ import java.util.Optional;
 
 
 
-class ResponseCodeJDBCDaoImpl implements Dao<ResponseCode> {
+public class ResponseCodeJDBCDaoImpl implements Dao<ResponseCode> {
     private static final String CREATE_TABLE_SQL = """
     CREATE TABLE IF NOT EXISTS response_code(
         id SERIAL PRIMARY KEY,
@@ -58,6 +58,8 @@ class ResponseCodeJDBCDaoImpl implements Dao<ResponseCode> {
                 error_level = ?
             WHERE id = ?
             """;
+
+    public ResponseCodeJDBCDaoImpl() {}
 
     @Override
     public void createTable() {

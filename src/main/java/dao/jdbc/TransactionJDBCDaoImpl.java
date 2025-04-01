@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-class TransactionJDBCDaoImpl implements Dao<Transaction> {
+public class TransactionJDBCDaoImpl implements Dao<Transaction> {
     private static final String CREATE_TABLE_SQL = """
     CREATE TABLE IF NOT EXISTS transaction(
         id SERIAL PRIMARY KEY,
@@ -75,6 +75,8 @@ class TransactionJDBCDaoImpl implements Dao<Transaction> {
                 sent_to_issuing_bank = ?
             WHERE id = ?
             """;
+
+    public TransactionJDBCDaoImpl() {}
 
     @Override
     public void createTable() {

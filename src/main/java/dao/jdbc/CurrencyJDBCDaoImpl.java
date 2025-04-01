@@ -16,7 +16,7 @@ import java.util.Optional;
 public class CurrencyJDBCDaoImpl implements Dao<Currency> {
     private static final String CREATE_TABLE_SQL = """
         CREATE TABLE IF NOT EXISTS currency(
-            id SERIAL PRIMARY KEY, 
+            id SERIAL PRIMARY KEY,
             currency_digital_code VARCHAR(3),
             currency_letter_code VARCHAR(3),
             currency_name VARCHAR(255)
@@ -32,7 +32,7 @@ public class CurrencyJDBCDaoImpl implements Dao<Currency> {
             """;
 
         private static final String ADD_TO_TABLE_SQL = """
-            INSERT INTO card_status(currency_digital_code, currency_letter_code, currency_name)
+            INSERT INTO currency(currency_digital_code, currency_letter_code, currency_name)
             VALUES (?, ?, ?);
             """;
 
@@ -42,7 +42,7 @@ public class CurrencyJDBCDaoImpl implements Dao<Currency> {
 
         private static final String FIND_ALL_SQL = """
             SELECT id, currency_digital_code, currency_letter_code, currency_name
-            FROM card_status
+            FROM currency
             """;
 
         private static final String FIND_BY_ID_SQL = FIND_ALL_SQL + """
@@ -54,6 +54,8 @@ public class CurrencyJDBCDaoImpl implements Dao<Currency> {
             SET currency_digital_code = ?, currency_letter_code = ?, currency_name = ?
             WHERE id = ?
             """;
+
+        public CurrencyJDBCDaoImpl() {}
 
         @Override
         public void createTable() {

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-class IssuingBankJDBCDaoImpl implements Dao<IssuingBank> {
+public class IssuingBankJDBCDaoImpl implements Dao<IssuingBank> {
     private static final String CREATE_TABLE_SQL = """
     CREATE TABLE IF NOT EXISTS issuing_bank(
         id SERIAL PRIMARY KEY,
@@ -56,6 +56,8 @@ class IssuingBankJDBCDaoImpl implements Dao<IssuingBank> {
                 abbreviated_name = ?
             WHERE id = ?
             """;
+
+    public IssuingBankJDBCDaoImpl() {}
 
     @Override
     public void createTable() {

@@ -50,6 +50,8 @@ public class PaymentSystemJDBCDaoImpl implements Dao<PaymentSystem> {
             WHERE id = ?
             """;
 
+    public PaymentSystemJDBCDaoImpl() {}
+
 
 
     @Override

@@ -3,17 +3,15 @@ package main.java.dao.jdbc;
 import main.java.configuration.JDBCConfig;
 import main.java.dao.Dao;
 import main.java.exception.DaoException;
-import main.java.model.Account;
 import main.java.model.Card;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 
-class CardJDBCDaoImpl implements Dao<Card> {
+public class CardJDBCDaoImpl implements Dao<Card> {
     private static final String CREATE_TABLE_SQL = """
     CREATE TABLE IF NOT EXISTS card(
         id SERIAL PRIMARY KEY,
@@ -69,6 +67,8 @@ class CardJDBCDaoImpl implements Dao<Card> {
                 sent_to_issuing_bank = ?
             WHERE id = ?
             """;
+
+    public CardJDBCDaoImpl() {}
 
     @Override
     public void createTable() {

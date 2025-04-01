@@ -15,7 +15,7 @@ import java.util.Optional;
 
 
 
-class MerchantCategoryCodeJDBCDaoImpl implements Dao<MerchantCategoryCode> {
+public class MerchantCategoryCodeJDBCDaoImpl implements Dao<MerchantCategoryCode> {
     private static final String CREATE_TABLE_SQL = """
     CREATE TABLE IF NOT EXISTS merchant_category_code(
         id SERIAL PRIMARY KEY,
@@ -56,6 +56,8 @@ class MerchantCategoryCodeJDBCDaoImpl implements Dao<MerchantCategoryCode> {
                 mcc_name = ?
             WHERE id = ?
             """;
+
+    public MerchantCategoryCodeJDBCDaoImpl() {}
 
     @Override
     public void createTable() {

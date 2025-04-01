@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-class AccountJDBCDaoImpl implements Dao<Account> {
+public class AccountJDBCDaoImpl implements Dao<Account> {
     private static final String CREATE_TABLE_SQL = """
     CREATE TABLE IF NOT EXISTS account(
         id SERIAL PRIMARY KEY,
@@ -61,6 +61,8 @@ class AccountJDBCDaoImpl implements Dao<Account> {
                 issuing_bank_id = ?
             WHERE id = ?
             """;
+
+    public AccountJDBCDaoImpl() {}
 
     @Override
     public void createTable() {

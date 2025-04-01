@@ -3,7 +3,6 @@ package main.java.dao.jdbc;
 import main.java.configuration.JDBCConfig;
 import main.java.dao.Dao;
 import main.java.exception.DaoException;
-import main.java.model.Transaction;
 import main.java.model.TransactionType;
 
 import java.sql.*;
@@ -12,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-class TransactionTypeJDBCDaoImpl implements Dao<TransactionType> {
+public class TransactionTypeJDBCDaoImpl implements Dao<TransactionType> {
     private static final String CREATE_TABLE_SQL = """
             CREATE TABLE IF NOT EXISTS transaction_type(
               id SERIAL PRIMARY KEY,
@@ -53,6 +52,8 @@ class TransactionTypeJDBCDaoImpl implements Dao<TransactionType> {
                 operator = ?
             WHERE id = ?
             """;
+
+    public TransactionTypeJDBCDaoImpl() {}
 
     @Override
     public void createTable() {

@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-class TerminalJDBCDaoImpl implements Dao<Terminal> {
+public class TerminalJDBCDaoImpl implements Dao<Terminal> {
     private static final String CREATE_TABLE_SQL = """
     CREATE TABLE IF NOT EXISTS terminal(
         id SERIAL PRIMARY KEY,
@@ -59,6 +59,8 @@ class TerminalJDBCDaoImpl implements Dao<Terminal> {
                 pos_id = ?
             WHERE id = ?
             """;
+
+    public TerminalJDBCDaoImpl() {}
 
     @Override
     public void createTable() {
