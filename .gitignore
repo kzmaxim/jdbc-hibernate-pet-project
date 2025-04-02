@@ -1,0 +1,58 @@
+# Файлы IDE
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+
+# Скомпилированные Java файлы
+*.class
+*.war
+*.ear
+*.jar
+
+# Логи и дампы
+*.log
+*.dump
+*.hprof
+
+# Файлы сборки (Maven/Gradle)
+target/
+build/
+out/
+bin/
+.gradle/
+.mvn/
+
+# Файлы базы данных
+*.db
+*.sqlite
+*.h2.db
+/db/
+/pgdata/
+
+# Файлы конфигурации с чувствительными данными
+*.env
+*.properties
+*.secret
+*.key
+*.pem
+
+# Файлы операционной системы
+.DS_Store
+Thumbs.db
+
+
+# Файлы тестов
+/test-output/
+/reports/
+
+# Файлы ломбока (если используете)
+*.delombok
+
+# Файлы зависимостей
+/lib/
+/dependencies/
+
+# Файлы Docker (если используете)
+docker-compose.override.yml

@@ -21,7 +21,7 @@ public class CardStatusJDBCDaoImpl implements Dao<CardStatus> {
     """;
 
         private static final String DROP_TABLE_SQL = """
-            DROP TABLE IF EXISTS card_status;
+            DROP TABLE IF EXISTS card_status CASCADE;
             """;
 
         private static final String CLEAR_TABLE_SQL = """

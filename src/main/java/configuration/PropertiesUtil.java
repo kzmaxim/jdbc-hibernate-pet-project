@@ -14,7 +14,10 @@ public final class PropertiesUtil {
         return PROPERTIES.getProperty(key);
     }
     private static void loadProperties() {
-        try(var inputStream = Properties.class.getClassLoader().getResourceAsStream("database.properties")) {
+        try(var inputStream = PropertiesUtil.class.getClassLoader().getResourceAsStream("database.properties")) {
+            if (inputStream == null) {
+                throw new RuntimeException("File 'database.properties' not found in classpath");
+            }
             PROPERTIES.load(inputStream);
         } catch (IOException e) {
             throw new RuntimeException(e);

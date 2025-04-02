@@ -19,7 +19,7 @@ public class PaymentSystemJDBCDaoImpl implements Dao<PaymentSystem> {
     """;
 
     private static final String DROP_TABLE_SQL = """
-            DROP TABLE IF EXISTS payment_system;
+            DROP TABLE IF EXISTS payment_system CASCADE;
             """;
 
     private static final String CLEAR_TABLE_SQL = """
