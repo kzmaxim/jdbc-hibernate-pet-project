@@ -1,6 +1,7 @@
 package service.impl;
 
-import main.java.dao.Dao;
+import dao.Dao;
+import dao.hibernate.IssuingBankHibernateDaoImpl;
 import dao.jdbc.IssuingBankJDBCDaoImpl;
 import model.IssuingBank;
 import service.IssuingBankService;
@@ -12,7 +13,7 @@ public class IssuingBankServiceImpl implements IssuingBankService {
     private final Dao<IssuingBank> issuingBankDao;
 
     public IssuingBankServiceImpl() {
-        this.issuingBankDao = new IssuingBankJDBCDaoImpl();
+        this.issuingBankDao = new IssuingBankHibernateDaoImpl();
     }
 
     @Override

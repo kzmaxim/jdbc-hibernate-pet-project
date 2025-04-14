@@ -1,6 +1,7 @@
 package service.impl;
 
-import main.java.dao.Dao;
+import dao.hibernate.CardStatusHibernateDaoImpl;
+import dao.Dao;
 import dao.jdbc.CardStatusJDBCDaoImpl;
 import model.CardStatus;
 import service.CardStatusService;
@@ -12,7 +13,7 @@ public class CardStatusServiceImpl implements CardStatusService {
     private final Dao<CardStatus> cardStatusDao;
 
     public CardStatusServiceImpl() {
-        this.cardStatusDao = new CardStatusJDBCDaoImpl();
+        this.cardStatusDao = new CardStatusHibernateDaoImpl();
     }
 
     @Override

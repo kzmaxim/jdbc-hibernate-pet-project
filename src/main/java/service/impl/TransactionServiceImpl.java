@@ -1,6 +1,7 @@
 package service.impl;
 
-import main.java.dao.Dao;
+import dao.Dao;
+import dao.hibernate.TransactionHibernateDaoImpl;
 import dao.jdbc.TransactionJDBCDaoImpl;
 import model.Transaction;
 import service.TransactionService;
@@ -12,7 +13,7 @@ public class TransactionServiceImpl implements TransactionService {
     private final Dao<Transaction> transactionDao;
 
     public TransactionServiceImpl() {
-        this.transactionDao = new TransactionJDBCDaoImpl();
+        this.transactionDao = new TransactionHibernateDaoImpl();
     }
 
     @Override

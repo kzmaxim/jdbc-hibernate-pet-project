@@ -1,6 +1,6 @@
 package service.impl;
 
-import main.java.dao.Dao;
+import dao.Dao;
 import dao.jdbc.TerminalJDBCDaoImpl;
 import model.Terminal;
 import service.TerminalService;
@@ -81,10 +81,10 @@ public class TerminalServiceImpl implements TerminalService {
         if (terminal.getTerminalId() == null || terminal.getTerminalId().isEmpty()) {
             throw new IllegalArgumentException("Terminal ID is required");
         }
-        if (terminal.getMccId() == null || terminal.getMccId() <= 0) {
+        if (terminal.getMccId() == null || terminal.getMccId() == null) {
             throw new IllegalArgumentException("Valid MCC ID is required");
         }
-        if (terminal.getPosId() == null || terminal.getPosId() <= 0) {
+        if (terminal.getPosId() == null || terminal.getPosId() == null) {
             throw new IllegalArgumentException("Valid POS ID is required");
         }
 

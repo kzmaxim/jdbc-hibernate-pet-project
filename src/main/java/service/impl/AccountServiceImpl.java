@@ -1,6 +1,7 @@
 package service.impl;
 
-import main.java.dao.Dao;
+import dao.Dao;
+import dao.hibernate.AccountHibernateDaoImpl;
 import dao.jdbc.AccountJDBCDaoImpl;
 import model.Account;
 import service.AccountService;
@@ -12,7 +13,7 @@ public class AccountServiceImpl implements AccountService {
     private final Dao<Account> accountDao;
 
     public AccountServiceImpl() {
-        this.accountDao = new AccountJDBCDaoImpl();
+        this.accountDao = new AccountHibernateDaoImpl();
     }
 
     @Override
@@ -97,10 +98,10 @@ public class AccountServiceImpl implements AccountService {
         if (account.getAccountNumber() == null || account.getAccountNumber().isEmpty()) {
             throw new IllegalArgumentException("Account number is required");
         }
-        if (account.getCurrencyId() == null || account.getCurrencyId() <= 0) {
+        if (account.getCurrencyId() == null || account.getCurrencyId().getId() == null) {
             throw new IllegalArgumentException("Invalid currency ID");
         }
-        if (account.getIssuingBankId() == null || account.getIssuingBankId() <= 0) {
+        if (account.getIssuingBankId() == null || account.getIssuingBankId().getId() == null) {
             throw new IllegalArgumentException("Invalid bank ID");
         }
     }

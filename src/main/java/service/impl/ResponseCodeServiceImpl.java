@@ -1,7 +1,8 @@
 package service.impl;
 
 
-import main.java.dao.Dao;
+import dao.Dao;
+import dao.hibernate.ResponseCodeHibernateDaoImpl;
 import dao.jdbc.ResponseCodeJDBCDaoImpl;
 import model.ResponseCode;
 import service.ResponseCodeService;
@@ -13,7 +14,7 @@ public class ResponseCodeServiceImpl implements ResponseCodeService {
     private final Dao<ResponseCode> responseCodeDao;
 
     public ResponseCodeServiceImpl() {
-        this.responseCodeDao = new ResponseCodeJDBCDaoImpl();
+        this.responseCodeDao = new ResponseCodeHibernateDaoImpl();
     }
 
     @Override

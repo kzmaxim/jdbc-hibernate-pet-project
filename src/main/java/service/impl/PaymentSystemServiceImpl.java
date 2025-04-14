@@ -1,6 +1,7 @@
 package service.impl;
 
-import main.java.dao.Dao;
+import dao.Dao;
+import dao.hibernate.PaymentSystemHibernateDaoImpl;
 import dao.jdbc.PaymentSystemJDBCDaoImpl;
 import model.PaymentSystem;
 import service.PaymentSystemService;
@@ -12,7 +13,7 @@ public class PaymentSystemServiceImpl implements PaymentSystemService {
     private final Dao<PaymentSystem> paymentSystemDao;
 
     public PaymentSystemServiceImpl() {
-        this.paymentSystemDao = new PaymentSystemJDBCDaoImpl();
+        this.paymentSystemDao = new PaymentSystemHibernateDaoImpl();
     }
 
     @Override

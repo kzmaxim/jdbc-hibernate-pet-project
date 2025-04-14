@@ -1,8 +1,11 @@
 package service.impl;
 
-import main.java.dao.Dao;
+import dao.Dao;
+import dao.hibernate.CardHibernateDaoImpl;
+import dao.hibernate.CardStatusHibernateDaoImpl;
 import dao.jdbc.CardJDBCDaoImpl;
 import model.Card;
+import model.CardStatus;
 import service.CardService;
 
 import java.util.List;
@@ -12,7 +15,7 @@ public class CardServiceImpl implements CardService {
     private final Dao<Card> cardDao;
 
     public CardServiceImpl() {
-        this.cardDao = new CardJDBCDaoImpl();
+        this.cardDao = new CardHibernateDaoImpl();
     }
 
     @Override
@@ -66,15 +69,23 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public boolean blockCard(Long cardId, Long statusId) {
+        CardStatusHibernateDaoImpl cardStatusDao = new CardStatusHibernateDaoImpl();
         Optional<Card> cardOpt = cardDao.getById(cardId);
         if (cardOpt.isEmpty()) {
             return false;
         }
+
+        Optional<CardStatus> statusOpt = cardStatusDao.getById(statusId);
+        if (statusOpt.isEmpty()) {
+            return false;
+        }
+
         Card card = cardOpt.get();
-        card.setCardStatusId(statusId);
+        card.setCardStatusId(statusOpt.get());
         cardDao.update(card);
         return true;
     }
+
 
     private void validateCard(Card card) {
         if (card == null) {
@@ -89,13 +100,13 @@ public class CardServiceImpl implements CardService {
         if (card.getHolderName() == null || card.getHolderName().isEmpty()) {
             throw new IllegalArgumentException("Holder name is required");
         }
-        if (card.getCardStatusId() == null || card.getCardStatusId() <= 0) {
+        if (card.getCardStatusId() == null || card.getCardStatusId().getId() == null) {
             throw new IllegalArgumentException("Invalid card status ID");
         }
-        if (card.getPaymentSystemId() == null || card.getPaymentSystemId() <= 0) {
+        if (card.getPaymentSystemId() == null || card.getPaymentSystemId().getId() == null) {
             throw new IllegalArgumentException("Invalid payment system ID");
         }
-        if (card.getAccountId() == null || card.getAccountId() <= 0) {
+        if (card.getAccountId() == null || card.getAccountId().getId() == null) {
             throw new IllegalArgumentException("Invalid account ID");
         }
     }

@@ -12,6 +12,20 @@
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
 
+        <mapping class="model.Account"/>
+        <mapping class="model.AcquiringBank"/>
+        <mapping class="model.Card"/>
+        <mapping class="model.CardStatus"/>
+        <mapping class="model.Currency"/>
+        <mapping class="model.IssuingBank"/>
+        <mapping class="model.MerchantCategoryCode"/>
+        <mapping class="model.PaymentSystem"/>
+        <mapping class="model.ResponseCode"/>
+        <mapping class="model.SalesPoint"/>
+        <mapping class="model.Terminal"/>
+        <mapping class="model.Transaction"/>
+        <mapping class="model.TransactionType"/>
+
 
 
         <!-- DB schema will be updated if needed -->

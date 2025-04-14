@@ -1,6 +1,7 @@
 package service.impl;
 
-import main.java.dao.Dao;
+import dao.Dao;
+import dao.hibernate.AcquiringBankHibernateDaoImpl;
 import dao.jdbc.AcquiringBankJDBCDaoImpl;
 import model.AcquiringBank;
 import service.AcquiringBankService;
@@ -12,7 +13,7 @@ public class AcquiringBankServiceImpl implements AcquiringBankService {
     private final Dao<AcquiringBank> acquiringBankDao;
 
     public AcquiringBankServiceImpl() {
-        this.acquiringBankDao = new AcquiringBankJDBCDaoImpl();
+        this.acquiringBankDao = new AcquiringBankHibernateDaoImpl();
     }
 
     @Override

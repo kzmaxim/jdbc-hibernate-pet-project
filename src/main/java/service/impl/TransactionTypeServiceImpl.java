@@ -1,6 +1,7 @@
 package service.impl;
 
-import main.java.dao.Dao;
+import dao.Dao;
+import dao.hibernate.TransactionTypeHibernateDaoImpl;
 import dao.jdbc.TransactionTypeJDBCDaoImpl;
 import model.TransactionType;
 import service.TransactionTypeService;
@@ -12,7 +13,7 @@ public class TransactionTypeServiceImpl implements TransactionTypeService {
     private final Dao<TransactionType> transactionTypeDao;
 
     public TransactionTypeServiceImpl() {
-        this.transactionTypeDao = new TransactionTypeJDBCDaoImpl();
+        this.transactionTypeDao = new TransactionTypeHibernateDaoImpl();
     }
 
     @Override

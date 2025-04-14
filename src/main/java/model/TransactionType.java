@@ -21,7 +21,7 @@ public class TransactionType {
     }
 
     public TransactionType() {
-        
+
     }
 
     public Long getId() {

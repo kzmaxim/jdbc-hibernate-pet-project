@@ -1,6 +1,7 @@
 package service.impl;
 
-import main.java.dao.Dao;
+import dao.Dao;
+import dao.hibernate.SalesPointHibernateDaoImpl;
 import dao.jdbc.SalesPointJDBCDaoImpl;
 import model.SalesPoint;
 import service.SalesPointService;
@@ -12,7 +13,7 @@ public class SalesPointServiceImpl implements SalesPointService {
     private final Dao<SalesPoint> salesPointDao;
 
     public SalesPointServiceImpl() {
-        this.salesPointDao = new SalesPointJDBCDaoImpl();
+        this.salesPointDao = new SalesPointHibernateDaoImpl();
     }
 
     @Override
@@ -77,7 +78,7 @@ public class SalesPointServiceImpl implements SalesPointService {
         if (salesPoint.getPosInn() == null || salesPoint.getPosInn().isEmpty()) {
             throw new IllegalArgumentException("INN is required");
         }
-        if (salesPoint.getAcquiringBankId() == null || salesPoint.getAcquiringBankId() <= 0) {
+        if (salesPoint.getAcquiringBankId() == null || salesPoint.getAcquiringBankId() == null) {
             throw new IllegalArgumentException("Valid acquiring bank ID is required");
         }
 

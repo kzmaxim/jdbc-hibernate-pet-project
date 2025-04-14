@@ -1,6 +1,7 @@
 package service.impl;
 
-import main.java.dao.Dao;
+import dao.Dao;
+import dao.hibernate.CurrencyHibernateDaoImpl;
 import dao.jdbc.CurrencyJDBCDaoImpl;
 import model.Currency;
 import service.CurrencyService;
@@ -12,7 +13,7 @@ public class CurrencyServiceImpl implements CurrencyService {
     private final Dao<Currency> currencyDao;
 
     public CurrencyServiceImpl() {
-        this.currencyDao = new CurrencyJDBCDaoImpl();
+        this.currencyDao = new CurrencyHibernateDaoImpl();
     }
 
     @Override

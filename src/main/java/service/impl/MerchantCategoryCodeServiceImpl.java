@@ -1,6 +1,7 @@
 package service.impl;
 
-import main.java.dao.Dao;
+import dao.Dao;
+import dao.hibernate.MerchantCategoryCodeHibernateDaoImpl;
 import dao.jdbc.MerchantCategoryCodeJDBCDaoImpl;
 import model.MerchantCategoryCode;
 import service.MerchantCategoryCodeService;
@@ -12,7 +13,7 @@ public class MerchantCategoryCodeServiceImpl implements MerchantCategoryCodeServ
     private final Dao<MerchantCategoryCode> mccDao;
 
     public MerchantCategoryCodeServiceImpl() {
-        this.mccDao = new MerchantCategoryCodeJDBCDaoImpl();
+        this.mccDao = new MerchantCategoryCodeHibernateDaoImpl();
     }
 
     @Override
