@@ -1,23 +1,46 @@
 package model;
 
+import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 
+
+
+@Entity
+@Table(name="transaction")
 public class Transaction {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name="transaction_date")
     private LocalDate transactionDate;
+    @Column(name="sum")
     private Double sum;
+    @Column(name="transaction_name")
     private String transactionName;
-    private Long accountId;
-    private Long transactionTypeId;
-    private Long cardId;
-    private Long terminalId;
-    private Long responseCodeId;
+    @ManyToOne
+    @JoinColumn(name = "account_id")
+    private Account accountId;
+    @ManyToOne
+    @JoinColumn(name = "transaction_type_id")
+    private TransactionType transactionTypeId;
+    @ManyToOne
+    @JoinColumn(name = "card_id")
+    private Card cardId;
+    @ManyToOne
+    @JoinColumn(name = "terminal_id")
+    private Terminal terminalId;
+    @ManyToOne
+    @JoinColumn(name = "response_code_id")
+    private ResponseCode responseCodeId;
+    @Column(name="authorization_code")
     private String authorizationCode;
+    @Column(name="received_from_issuing_bank")
     private Timestamp receivedFromIssuingBank;
+    @Column(name="sent_to_issuing_bank")
     private Timestamp sentToIssuingBank;
 
-    public Transaction(Long id, LocalDate transactionDate, Double sum, String transactionName, Long accountId, Long transactionTypeId, Long cardId, Long terminalId, Long responseCodeId, String authorizationCode, Timestamp receivedFromIssuingBank, Timestamp sentToIssuingBank) {
+    public Transaction(Long id, LocalDate transactionDate, Double sum, String transactionName, Account accountId, TransactionType transactionTypeId, Card cardId, Terminal terminalId, ResponseCode responseCodeId, String authorizationCode, Timestamp receivedFromIssuingBank, Timestamp sentToIssuingBank) {
         this.id = id;
         this.transactionDate = transactionDate;
         this.sum = sum;
@@ -30,6 +53,10 @@ public class Transaction {
         this.authorizationCode = authorizationCode;
         this.receivedFromIssuingBank = receivedFromIssuingBank;
         this.sentToIssuingBank = sentToIssuingBank;
+    }
+
+    public Transaction() {
+
     }
 
     public Long getId() {
@@ -64,43 +91,43 @@ public class Transaction {
         this.transactionName = transactionName;
     }
 
-    public Long getAccountId() {
+    public Account getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(Long accountId) {
+    public void setAccountId(Account accountId) {
         this.accountId = accountId;
     }
 
-    public Long getTransactionTypeId() {
+    public TransactionType getTransactionTypeId() {
         return transactionTypeId;
     }
 
-    public void setTransactionTypeId(Long transactionTypeId) {
+    public void setTransactionTypeId(TransactionType transactionTypeId) {
         this.transactionTypeId = transactionTypeId;
     }
 
-    public Long getCardId() {
+    public Card getCardId() {
         return cardId;
     }
 
-    public void setCardId(Long cardId) {
+    public void setCardId(Card cardId) {
         this.cardId = cardId;
     }
 
-    public Long getTerminalId() {
+    public Terminal getTerminalId() {
         return terminalId;
     }
 
-    public void setTerminalId(Long terminalId) {
+    public void setTerminalId(Terminal terminalId) {
         this.terminalId = terminalId;
     }
 
-    public Long getResponseCodeId() {
+    public ResponseCode getResponseCodeId() {
         return responseCodeId;
     }
 
-    public void setResponseCodeId(Long responseCodeId) {
+    public void setResponseCodeId(ResponseCode responseCodeId) {
         this.responseCodeId = responseCodeId;
     }
 

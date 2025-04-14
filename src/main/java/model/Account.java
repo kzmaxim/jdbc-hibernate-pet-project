@@ -1,18 +1,34 @@
 package model;
 
-public class Account {
-    private Long id;
-    private String accountNumber;
-    private Double balance;
-    private Long currencyId;
-    private Long issuingBankId;
+import javax.persistence.*;
 
-    public Account(Long id, String accountNumber, Double balance, Long currencyId, Long issuingBankId) {
+@Entity
+@Table(name="account")
+public class Account {
+    @Id
+    @GeneratedValue
+    private Long id;
+    @Column(name="account_number")
+    private String accountNumber;
+    @Column(name="balance")
+    private Double balance;
+    @ManyToOne
+    @JoinColumn(name = "currency_id")
+    private Currency currencyId;
+    @ManyToOne
+    @JoinColumn(name = "issuing_bank_id")
+    private IssuingBank issuingBankId;
+
+    public Account(Long id, String accountNumber, Double balance, Currency currencyId, IssuingBank issuingBankId) {
         this.id = id;
         this.accountNumber = accountNumber;
         this.balance = balance;
         this.currencyId = currencyId;
         this.issuingBankId = issuingBankId;
+    }
+
+    public Account() {
+
     }
 
     public Long getId() {
@@ -39,19 +55,19 @@ public class Account {
         this.balance = balance;
     }
 
-    public Long getCurrencyId() {
+    public Currency getCurrencyId() {
         return currencyId;
     }
 
-    public void setCurrencyId(Long currencyId) {
+    public void setCurrencyId(Currency currencyId) {
         this.currencyId = currencyId;
     }
 
-    public Long getIssuingBankId() {
+    public IssuingBank getIssuingBankId() {
         return issuingBankId;
     }
 
-    public void setIssuingBankId(Long issuingBankId) {
+    public void setIssuingBankId(IssuingBank issuingBankId) {
         this.issuingBankId = issuingBankId;
     }
 

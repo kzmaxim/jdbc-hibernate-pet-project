@@ -1,20 +1,37 @@
 package model;
 
+import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 
+
+@Entity
+@Table(name="card")
 public class Card {
+    @Id
+    @Column(name="card_id")
     private Long cardId;
+    @Column(name="card_number")
     private String cardNumber;
+    @Column(name="expiration_date")
     private LocalDate expirationDate;
+    @Column(name="holder_name")
     private String holderName;
-    private Long cardStatusId;
-    private Long paymentSystemId;
-    private Long accountId;
+    @ManyToOne
+    @JoinColumn(name = "card_status_id")
+    private CardStatus cardStatusId;
+    @ManyToOne
+    @JoinColumn(name = "payment_system_id")
+    private PaymentSystem paymentSystemId;
+    @ManyToOne
+    @JoinColumn(name = "account_id")
+    private Account accountId;
+    @Column(name="received_from_issuing_bank")
     private Timestamp receivedFromIssuingBank;
+    @Column(name="sent_to_issuing_bank")
     private Timestamp sentToIssuingBank;
 
-    public Card(Long cardId, String cardNumber, LocalDate expirationDate, String holderName, Long cardStatusId, Long paymentSystemId, Long accountId, Timestamp receivedFromIssuingBank, Timestamp sentToIssuingBank) {
+    public Card(Long cardId, String cardNumber, LocalDate expirationDate, String holderName, CardStatus cardStatusId, PaymentSystem paymentSystemId, Account accountId, Timestamp receivedFromIssuingBank, Timestamp sentToIssuingBank) {
         this.cardId = cardId;
         this.cardNumber = cardNumber;
         this.expirationDate = expirationDate;
@@ -24,6 +41,10 @@ public class Card {
         this.accountId = accountId;
         this.receivedFromIssuingBank = receivedFromIssuingBank;
         this.sentToIssuingBank = sentToIssuingBank;
+    }
+
+    public Card() {
+
     }
 
     public Long getCardId() {
@@ -58,27 +79,27 @@ public class Card {
         this.holderName = holderName;
     }
 
-    public Long getCardStatusId() {
+    public CardStatus getCardStatusId() {
         return cardStatusId;
     }
 
-    public void setCardStatusId(Long cardStatusId) {
+    public void setCardStatusId(CardStatus cardStatusId) {
         this.cardStatusId = cardStatusId;
     }
 
-    public Long getPaymentSystemId() {
+    public PaymentSystem getPaymentSystemId() {
         return paymentSystemId;
     }
 
-    public void setPaymentSystemId(Long paymentSystemId) {
+    public void setPaymentSystemId(PaymentSystem paymentSystemId) {
         this.paymentSystemId = paymentSystemId;
     }
 
-    public Long getAccountId() {
+    public Account getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(Long accountId) {
+    public void setAccountId(Account accountId) {
         this.accountId = accountId;
     }
 

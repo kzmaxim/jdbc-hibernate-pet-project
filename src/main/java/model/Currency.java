@@ -1,9 +1,19 @@
 package model;
 
+
+import javax.persistence.*;
+
+@Entity
+@Table(name="currency")
 public class Currency {
+    @Id
+    @GeneratedValue
     private Long id;
+    @Column(name="currency_digital_code")
     private String currencyDigitalCode;
+    @Column(name="currency_letter_code")
     private String currencyLetterCode;
+    @Column(name="currency_name")
     private String currencyName;
 
     public Currency(Long id, String currencyDigitalCode, String currencyLetterCode, String currencyName) {
@@ -11,6 +21,10 @@ public class Currency {
         this.currencyDigitalCode = currencyDigitalCode;
         this.currencyLetterCode = currencyLetterCode;
         this.currencyName = currencyName;
+    }
+
+    public Currency() {
+
     }
 
     public Long getId() {

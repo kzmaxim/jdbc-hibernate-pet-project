@@ -1,12 +1,23 @@
 package model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="card_status")
 public class CardStatus {
+    @Id
+    @GeneratedValue
     private Long id;
+    @Column(name="card_status_name")
     private String cardStatusName;
 
     public CardStatus(Long id, String cardStatusName) {
         this.id = id;
         this.cardStatusName = cardStatusName;
+    }
+
+    public CardStatus() {
+
     }
 
     public Long getId() {

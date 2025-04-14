@@ -1,18 +1,35 @@
 package model;
 
-public class SalesPoint {
-    private Long id;
-    private String posName;
-    private String posAddress;
-    private String posInn;
-    private Long acquiringBankId;
 
-    public SalesPoint(Long id, String posName, String posAddress, String posInn, Long acquiringBankId) {
+import javax.persistence.*;
+
+@Entity
+@Table(name="sales_point")
+public class SalesPoint {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    @Column(name="pos_name")
+    private String posName;
+    @Column(name="pos_address")
+    private String posAddress;
+    @Column(name="pos_inn")
+    private String posInn;
+
+    @ManyToOne
+    @JoinColumn(name = "acquiring_bank_id")
+    private AcquiringBank acquiringBankId;
+
+    public SalesPoint(Long id, String posName, String posAddress, String posInn, AcquiringBank acquiringBankId) {
         this.id = id;
         this.posName = posName;
         this.posAddress = posAddress;
         this.posInn = posInn;
         this.acquiringBankId = acquiringBankId;
+    }
+
+    public SalesPoint() {
+
     }
 
     public Long getId() {
@@ -47,11 +64,11 @@ public class SalesPoint {
         this.posInn = posInn;
     }
 
-    public Long getAcquiringBankId() {
+    public AcquiringBank getAcquiringBankId() {
         return acquiringBankId;
     }
 
-    public void setAcquiringBankId(Long acquiringBankId) {
+    public void setAcquiringBankId(AcquiringBank acquiringBankId) {
         this.acquiringBankId = acquiringBankId;
     }
 

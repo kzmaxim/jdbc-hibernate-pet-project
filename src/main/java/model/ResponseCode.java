@@ -1,9 +1,19 @@
 package model;
 
+
+import javax.persistence.*;
+
+@Entity
+@Table(name="response_code")
 public class ResponseCode {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(name="error_code")
     private String errorCode;
+    @Column(name="error_description")
     private String errorDescription;
+    @Column(name="error_level")
     private String errorLevel;
 
     public ResponseCode(Long id, String errorCode, String errorDescription, String errorLevel) {
@@ -11,6 +21,10 @@ public class ResponseCode {
         this.errorCode = errorCode;
         this.errorDescription = errorDescription;
         this.errorLevel = errorLevel;
+    }
+
+    public ResponseCode() {
+
     }
 
     public Long getId() {

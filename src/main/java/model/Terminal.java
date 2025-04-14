@@ -1,16 +1,32 @@
 package model;
 
-public class Terminal {
-    private Long id;
-    private String terminalId;
-    private Long mccId;
-    private Long posId;
 
-    public Terminal(Long id, String terminalId, Long mccId, Long posId) {
+import javax.persistence.*;
+
+@Entity
+@Table(name="terminal")
+public class Terminal {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    @Column(name="terminal_id")
+    private String terminalId;
+    @ManyToOne
+    @JoinColumn(name="mcc_id")
+    private MerchantCategoryCode mccId;
+    @ManyToOne
+    @JoinColumn(name="pos_id")
+    private SalesPoint posId;
+
+    public Terminal(Long id, String terminalId, MerchantCategoryCode mccId, SalesPoint posId) {
         this.id = id;
         this.terminalId = terminalId;
         this.mccId = mccId;
         this.posId = posId;
+    }
+
+    public Terminal() {
+
     }
 
     public Long getId() {
@@ -29,19 +45,19 @@ public class Terminal {
         this.terminalId = terminalId;
     }
 
-    public Long getMccId() {
+    public MerchantCategoryCode getMccId() {
         return mccId;
     }
 
-    public void setMccId(Long mccId) {
+    public void setMccId(MerchantCategoryCode mccId) {
         this.mccId = mccId;
     }
 
-    public Long getPosId() {
+    public SalesPoint getPosId() {
         return posId;
     }
 
-    public void setPosId(Long posId) {
+    public void setPosId(SalesPoint posId) {
         this.posId = posId;
     }
 

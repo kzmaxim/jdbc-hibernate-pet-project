@@ -1,9 +1,19 @@
 package model;
 
+
+import javax.persistence.*;
+
+@Entity
+@Table(name="issuing_bank")
 public class IssuingBank {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(name="bic")
     private String bic;
+    @Column(name="bin")
     private String bin;
+    @Column(name="abbreviated_name")
     private String abbreviatedName;
 
     public IssuingBank(Long id, String bic, String bin, String abbreviatedName) {
@@ -11,6 +21,10 @@ public class IssuingBank {
         this.bic = bic;
         this.bin = bin;
         this.abbreviatedName = abbreviatedName;
+    }
+
+    public IssuingBank() {
+
     }
 
     public Long getId() {
