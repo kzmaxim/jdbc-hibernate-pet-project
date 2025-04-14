@@ -1,11 +1,11 @@
 package main.java;
 
-import main.java.dao.jdbc.CardStatusJDBCDaoImpl;
-import main.java.dao.jdbc.PaymentSystemJDBCDaoImpl;
-import main.java.model.*;
-import main.java.service.AccountService;
-import main.java.service.CardService;
-import main.java.service.impl.*;
+import dao.jdbc.CardStatusJDBCDaoImpl;
+import dao.jdbc.PaymentSystemJDBCDaoImpl;
+import model.*;
+import service.AccountService;
+import service.CardService;
+import service.impl.*;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;

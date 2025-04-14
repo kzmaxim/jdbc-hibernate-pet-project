@@ -1,9 +1,9 @@
-package main.java.service.impl;
+package service.impl;
 
 import main.java.dao.Dao;
-import main.java.dao.jdbc.SalesPointJDBCDaoImpl;
-import main.java.model.SalesPoint;
-import main.java.service.SalesPointService;
+import dao.jdbc.SalesPointJDBCDaoImpl;
+import model.SalesPoint;
+import service.SalesPointService;
 
 import java.util.List;
 import java.util.Optional;

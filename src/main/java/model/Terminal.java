@@ -1,4 +1,4 @@
-package main.java.model;
+package model;
 
 public class Terminal {
     private Long id;

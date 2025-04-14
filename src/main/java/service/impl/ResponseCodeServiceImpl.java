@@ -1,10 +1,10 @@
-package main.java.service.impl;
+package service.impl;
 
 
 import main.java.dao.Dao;
-import main.java.dao.jdbc.ResponseCodeJDBCDaoImpl;
-import main.java.model.ResponseCode;
-import main.java.service.ResponseCodeService;
+import dao.jdbc.ResponseCodeJDBCDaoImpl;
+import model.ResponseCode;
+import service.ResponseCodeService;
 
 import java.util.List;
 import java.util.Optional;

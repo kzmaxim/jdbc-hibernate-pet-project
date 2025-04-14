@@ -1,9 +1,9 @@
-package main.java.service.impl;
+package service.impl;
 
 import main.java.dao.Dao;
-import main.java.dao.jdbc.CardStatusJDBCDaoImpl;
-import main.java.model.CardStatus;
-import main.java.service.CardStatusService;
+import dao.jdbc.CardStatusJDBCDaoImpl;
+import model.CardStatus;
+import service.CardStatusService;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,9 +1,9 @@
-package main.java.service.impl;
+package service.impl;
 
 import main.java.dao.Dao;
-import main.java.dao.jdbc.TransactionTypeJDBCDaoImpl;
-import main.java.model.TransactionType;
-import main.java.service.TransactionTypeService;
+import dao.jdbc.TransactionTypeJDBCDaoImpl;
+import model.TransactionType;
+import service.TransactionTypeService;
 
 import java.util.List;
 import java.util.Optional;

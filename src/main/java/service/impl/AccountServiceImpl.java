@@ -1,9 +1,9 @@
-package main.java.service.impl;
+package service.impl;
 
 import main.java.dao.Dao;
-import main.java.dao.jdbc.AccountJDBCDaoImpl;
-import main.java.model.Account;
-import main.java.service.AccountService;
+import dao.jdbc.AccountJDBCDaoImpl;
+import model.Account;
+import service.AccountService;
 
 import java.util.List;
 import java.util.Optional;

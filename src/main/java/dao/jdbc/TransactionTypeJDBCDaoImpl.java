@@ -1,9 +1,9 @@
-package main.java.dao.jdbc;
+package dao.jdbc;
 
 import main.java.configuration.JDBCConfig;
-import main.java.dao.Dao;
-import main.java.exception.DaoException;
-import main.java.model.TransactionType;
+import dao.Dao;
+import exception.DaoException;
+import model.TransactionType;
 
 import java.sql.*;
 import java.util.ArrayList;

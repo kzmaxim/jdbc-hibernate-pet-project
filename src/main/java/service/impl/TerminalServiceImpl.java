@@ -1,9 +1,9 @@
-package main.java.service.impl;
+package service.impl;
 
 import main.java.dao.Dao;
-import main.java.dao.jdbc.TerminalJDBCDaoImpl;
-import main.java.model.Terminal;
-import main.java.service.TerminalService;
+import dao.jdbc.TerminalJDBCDaoImpl;
+import model.Terminal;
+import service.TerminalService;
 
 import java.util.List;
 import java.util.Optional;

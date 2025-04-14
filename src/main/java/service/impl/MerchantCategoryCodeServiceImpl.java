@@ -1,9 +1,9 @@
-package main.java.service.impl;
+package service.impl;
 
 import main.java.dao.Dao;
-import main.java.dao.jdbc.MerchantCategoryCodeJDBCDaoImpl;
-import main.java.model.MerchantCategoryCode;
-import main.java.service.MerchantCategoryCodeService;
+import dao.jdbc.MerchantCategoryCodeJDBCDaoImpl;
+import model.MerchantCategoryCode;
+import service.MerchantCategoryCodeService;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,9 +1,9 @@
-package main.java.service.impl;
+package service.impl;
 
 import main.java.dao.Dao;
-import main.java.dao.jdbc.AcquiringBankJDBCDaoImpl;
-import main.java.model.AcquiringBank;
-import main.java.service.AcquiringBankService;
+import dao.jdbc.AcquiringBankJDBCDaoImpl;
+import model.AcquiringBank;
+import service.AcquiringBankService;
 
 import java.util.List;
 import java.util.Optional;

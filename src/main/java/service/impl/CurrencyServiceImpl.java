@@ -1,9 +1,9 @@
-package main.java.service.impl;
+package service.impl;
 
 import main.java.dao.Dao;
-import main.java.dao.jdbc.CurrencyJDBCDaoImpl;
-import main.java.model.Currency;
-import main.java.service.CurrencyService;
+import dao.jdbc.CurrencyJDBCDaoImpl;
+import model.Currency;
+import service.CurrencyService;
 
 import java.util.List;
 import java.util.Optional;

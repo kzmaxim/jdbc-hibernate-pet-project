@@ -1,9 +1,9 @@
-package main.java.service.impl;
+package service.impl;
 
 import main.java.dao.Dao;
-import main.java.dao.jdbc.PaymentSystemJDBCDaoImpl;
-import main.java.model.PaymentSystem;
-import main.java.service.PaymentSystemService;
+import dao.jdbc.PaymentSystemJDBCDaoImpl;
+import model.PaymentSystem;
+import service.PaymentSystemService;
 
 import java.util.List;
 import java.util.Optional;

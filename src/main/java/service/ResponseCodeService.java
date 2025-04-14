@@ -1,6 +1,6 @@
-package main.java.service;
+package service;
 
-import main.java.model.ResponseCode;
+import model.ResponseCode;
 
 import java.util.List;
 import java.util.Optional;
