@@ -124,7 +124,7 @@ public class MerchantCategoryCodeJDBCDaoImpl implements Dao<MerchantCategoryCode
             List<MerchantCategoryCode> list = new ArrayList<>();
             while(resultSet.next()) {
                 list.add(new MerchantCategoryCode(
-                        resultSet.getLong("id"),
+                        //resultSet.getLong("id"),
                         resultSet.getString("mcc"),
                         resultSet.getString("mcc_name")
                 ));
@@ -143,7 +143,7 @@ public class MerchantCategoryCodeJDBCDaoImpl implements Dao<MerchantCategoryCode
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 return Optional.of(new MerchantCategoryCode(
-                        resultSet.getLong("id"),
+                        //resultSet.getLong("id"),
                         resultSet.getString("mcc"),
                         resultSet.getString("mcc_name")
                 ));

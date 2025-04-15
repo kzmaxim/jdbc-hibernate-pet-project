@@ -3,7 +3,10 @@ package dao.jdbc;
 import main.java.configuration.JDBCConfig;
 import dao.Dao;
 import exception.DaoException;
+import model.Account;
 import model.Card;
+import model.CardStatus;
+import model.PaymentSystem;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -110,9 +113,9 @@ public class CardJDBCDaoImpl implements Dao<Card> {
             preparedStatement.setString(1, entity.getCardNumber());
             preparedStatement.setDate(2, Date.valueOf(entity.getExpirationDate()));
             preparedStatement.setString(3, entity.getHolderName());
-            preparedStatement.setLong(4, entity.getCardStatusId());
-            preparedStatement.setLong(5, entity.getPaymentSystemId());
-            preparedStatement.setLong(6, entity.getAccountId());
+            preparedStatement.setObject(4, entity.getCardStatusId());
+            preparedStatement.setObject(5, entity.getPaymentSystemId());
+            preparedStatement.setObject(6, entity.getAccountId());
             preparedStatement.setTimestamp(7, entity.getReceivedFromIssuingBank());
             preparedStatement.setTimestamp(8, entity.getSentToIssuingBank());
 
@@ -141,13 +144,13 @@ public class CardJDBCDaoImpl implements Dao<Card> {
             List<Card> list = new ArrayList<>();
             while(resultSet.next()) {
                 list.add(new Card(
-                        resultSet.getLong("id"),
+                        //resultSet.getLong("id"),
                         resultSet.getString("card_number"),
                         resultSet.getDate("expiration_date").toLocalDate(),
                         resultSet.getString("holder_name"),
-                        resultSet.getLong("card_status_id"),
-                        resultSet.getLong("payment_system_id"),
-                        resultSet.getLong("account_id"),
+                        resultSet.getObject("card_status_id", CardStatus.class),
+                        resultSet.getObject("payment_system_id", PaymentSystem.class),
+                        resultSet.getObject("account_id", Account.class),
                         resultSet.getTimestamp("received_from_issuing_bank"),
                         resultSet.getTimestamp("sent_to_issuing_bank")
                 ));
@@ -166,13 +169,13 @@ public class CardJDBCDaoImpl implements Dao<Card> {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 return Optional.of(new Card(
-                        resultSet.getLong("id"),
+                        //resultSet.getLong("id"),
                         resultSet.getString("card_number"),
                         resultSet.getDate("expiration_date").toLocalDate(),
                         resultSet.getString("holder_name"),
-                        resultSet.getLong("card_status_id"),
-                        resultSet.getLong("payment_system_id"),
-                        resultSet.getLong("account_id"),
+                        resultSet.getObject("card_status_id", CardStatus.class),
+                        resultSet.getObject("payment_system_id", PaymentSystem.class),
+                        resultSet.getObject("account_id", Account.class),
                         resultSet.getTimestamp("received_from_issuing_bank"),
                         resultSet.getTimestamp("sent_to_issuing_bank")
                 ));
@@ -190,9 +193,9 @@ public class CardJDBCDaoImpl implements Dao<Card> {
             preparedStatement.setString(1, entity.getCardNumber());
             preparedStatement.setDate(2, Date.valueOf(entity.getExpirationDate()));
             preparedStatement.setString(3, entity.getHolderName());
-            preparedStatement.setLong(4, entity.getCardStatusId());
-            preparedStatement.setLong(5, entity.getPaymentSystemId());
-            preparedStatement.setLong(6, entity.getAccountId());
+            preparedStatement.setObject(4, entity.getCardStatusId());
+            preparedStatement.setObject(5, entity.getPaymentSystemId());
+            preparedStatement.setObject(6, entity.getAccountId());
             preparedStatement.setTimestamp(7, entity.getReceivedFromIssuingBank());
             preparedStatement.setTimestamp(8, entity.getSentToIssuingBank());
             preparedStatement.setLong(9, entity.getCardId());

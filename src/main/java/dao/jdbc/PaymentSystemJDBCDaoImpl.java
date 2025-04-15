@@ -117,7 +117,7 @@ public class PaymentSystemJDBCDaoImpl implements Dao<PaymentSystem> {
             List<PaymentSystem> list = new ArrayList<>();
             while(resultSet.next()) {
                 list.add(new PaymentSystem(
-                        resultSet.getLong("id"),
+                        //resultSet.getLong("id"),
                         resultSet.getString("payment_system_name")
                 ));
             }
@@ -135,7 +135,7 @@ public class PaymentSystemJDBCDaoImpl implements Dao<PaymentSystem> {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 return Optional.of(new PaymentSystem(
-                        resultSet.getLong("id"),
+                        //resultSet.getLong("id"),
                         resultSet.getString("payment_system_name")
                 ));
             }

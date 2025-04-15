@@ -6,13 +6,12 @@ import javax.persistence.*;
 @Table(name="payment_system")
 public class PaymentSystem {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name="payment_system_name")
     private String paymentSystemName;
 
-    public PaymentSystem(Long id, String paymentSystemName) {
-        this.id = id;
+    public PaymentSystem(String paymentSystemName) {
         this.paymentSystemName = paymentSystemName;
     }
 

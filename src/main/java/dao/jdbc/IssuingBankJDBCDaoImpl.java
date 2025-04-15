@@ -125,7 +125,7 @@ public class IssuingBankJDBCDaoImpl implements Dao<IssuingBank> {
             List<IssuingBank> list = new ArrayList<>();
             while(resultSet.next()) {
                 list.add(new IssuingBank(
-                        resultSet.getLong("id"),
+                        //resultSet.getLong("id"),
                         resultSet.getString("bic"),
                         resultSet.getString("bin"),
                         resultSet.getString("abbreviated_name")
@@ -145,7 +145,7 @@ public class IssuingBankJDBCDaoImpl implements Dao<IssuingBank> {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 return Optional.of(new IssuingBank(
-                        resultSet.getLong("id"),
+                        //resultSet.getLong("id"),
                         resultSet.getString("bic"),
                         resultSet.getString("bin"),
                         resultSet.getString("abbreviated_name")

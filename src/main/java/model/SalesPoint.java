@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Table(name="sales_point")
 public class SalesPoint {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name="pos_name")
     private String posName;
@@ -20,8 +20,8 @@ public class SalesPoint {
     @JoinColumn(name = "acquiring_bank_id")
     private AcquiringBank acquiringBankId;
 
-    public SalesPoint(Long id, String posName, String posAddress, String posInn, AcquiringBank acquiringBankId) {
-        this.id = id;
+    public SalesPoint(String posName, String posAddress, String posInn, AcquiringBank acquiringBankId) {
+        //this.id = id;
         this.posName = posName;
         this.posAddress = posAddress;
         this.posInn = posInn;

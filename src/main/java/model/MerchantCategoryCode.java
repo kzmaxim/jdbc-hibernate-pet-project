@@ -7,14 +7,14 @@ import javax.persistence.*;
 @Table(name="merchant_category_code")
 public class MerchantCategoryCode {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String mcc;
     @Column(name="mcc_name")
     private String mccName;
 
-    public MerchantCategoryCode(Long id, String mcc, String mccName) {
-        this.id = id;
+    public MerchantCategoryCode(String mcc, String mccName) {
+        //this.id = id;
         this.mcc = mcc;
         this.mccName = mccName;
     }

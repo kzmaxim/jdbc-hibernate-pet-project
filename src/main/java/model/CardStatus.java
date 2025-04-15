@@ -6,13 +6,13 @@ import javax.persistence.*;
 @Table(name="card_status")
 public class CardStatus {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name="card_status_name")
     private String cardStatusName;
 
-    public CardStatus(Long id, String cardStatusName) {
-        this.id = id;
+    public CardStatus(String cardStatusName) {
+        //this.id = id;
         this.cardStatusName = cardStatusName;
     }
 

@@ -7,14 +7,14 @@ import javax.persistence.*;
 @Table(name="acquiring_bank")
 public class AcquiringBank {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String bic;
     @Column(name="abbreviated_name")
     private String abbreviatedName;
 
-    public AcquiringBank(Long id, String bic, String abbreviatedName) {
-        this.id = id;
+    public AcquiringBank(String bic, String abbreviatedName) {
+        //this.id = id;
         this.bic = bic;
         this.abbreviatedName = abbreviatedName;
     }

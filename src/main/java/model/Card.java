@@ -9,7 +9,8 @@ import java.time.LocalDate;
 @Table(name="card")
 public class Card {
     @Id
-    @Column(name="card_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private Long cardId;
     @Column(name="card_number")
     private String cardNumber;
@@ -31,8 +32,7 @@ public class Card {
     @Column(name="sent_to_issuing_bank")
     private Timestamp sentToIssuingBank;
 
-    public Card(Long cardId, String cardNumber, LocalDate expirationDate, String holderName, CardStatus cardStatusId, PaymentSystem paymentSystemId, Account accountId, Timestamp receivedFromIssuingBank, Timestamp sentToIssuingBank) {
-        this.cardId = cardId;
+    public Card(String cardNumber, LocalDate expirationDate, String holderName, CardStatus cardStatusId, PaymentSystem paymentSystemId, Account accountId, Timestamp receivedFromIssuingBank, Timestamp sentToIssuingBank) {
         this.cardNumber = cardNumber;
         this.expirationDate = expirationDate;
         this.holderName = holderName;

@@ -3,6 +3,7 @@ package dao.jdbc;
 import main.java.configuration.JDBCConfig;
 import dao.Dao;
 import exception.DaoException;
+import model.AcquiringBank;
 import model.SalesPoint;
 
 import java.sql.Connection;
@@ -103,7 +104,7 @@ public class SalesPointJDBCDaoImpl implements Dao<SalesPoint> {
             preparedStatement.setString(1, entity.getPosName());
             preparedStatement.setString(2, entity.getPosAddress());
             preparedStatement.setString(3, entity.getPosInn());
-            preparedStatement.setLong(4, entity.getAcquiringBankId());
+            preparedStatement.setObject(4, entity.getAcquiringBankId());
 
             return preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -130,11 +131,10 @@ public class SalesPointJDBCDaoImpl implements Dao<SalesPoint> {
             List<SalesPoint> list = new ArrayList<>();
             while(resultSet.next()) {
                 list.add(new SalesPoint(
-                        resultSet.getLong("id"),
                         resultSet.getString("pos_name"),
                         resultSet.getString("pos_address"),
                         resultSet.getString("pos_inn"),
-                        resultSet.getLong("acquiring_bank_id")
+                        resultSet.getObject("acquiring_bank_id", AcquiringBank.class)
                 ));
             }
             return list;
@@ -151,11 +151,10 @@ public class SalesPointJDBCDaoImpl implements Dao<SalesPoint> {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 return Optional.of(new SalesPoint(
-                        resultSet.getLong("id"),
                         resultSet.getString("pos_name"),
                         resultSet.getString("pos_address"),
                         resultSet.getString("pos_inn"),
-                        resultSet.getLong("acquiring_bank_id")
+                        resultSet.getObject("acquiring_bank_id", AcquiringBank.class)
                 ));
             }
             return Optional.empty();
@@ -171,7 +170,7 @@ public class SalesPointJDBCDaoImpl implements Dao<SalesPoint> {
             preparedStatement.setString(1, entity.getPosName());
             preparedStatement.setString(2, entity.getPosAddress());
             preparedStatement.setString(3, entity.getPosInn());
-            preparedStatement.setLong(4, entity.getAcquiringBankId());
+            preparedStatement.setObject(4, entity.getAcquiringBankId());
             preparedStatement.setLong(5, entity.getId());
 
             preparedStatement.executeUpdate();

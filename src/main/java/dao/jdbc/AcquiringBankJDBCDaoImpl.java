@@ -1,7 +1,7 @@
 package dao.jdbc;
 
 import main.java.configuration.JDBCConfig;
-import main.java.dao.Dao;
+import dao.Dao;
 import exception.DaoException;
 import model.AcquiringBank;
 
@@ -124,7 +124,6 @@ public class AcquiringBankJDBCDaoImpl implements Dao<AcquiringBank> {
             List<AcquiringBank> list = new ArrayList<>();
             while(resultSet.next()) {
                 list.add(new AcquiringBank(
-                        resultSet.getLong("id"),
                         resultSet.getString("bic"),
                         resultSet.getString("abbreviated_name")
                 ));
@@ -143,7 +142,6 @@ public class AcquiringBankJDBCDaoImpl implements Dao<AcquiringBank> {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 return Optional.of(new AcquiringBank(
-                        resultSet.getLong("id"),
                         resultSet.getString("bic"),
                         resultSet.getString("abbreviated_name")
                 ));

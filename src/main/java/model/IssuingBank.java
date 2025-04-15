@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Table(name="issuing_bank")
 public class IssuingBank {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name="bic")
     private String bic;
@@ -16,8 +16,7 @@ public class IssuingBank {
     @Column(name="abbreviated_name")
     private String abbreviatedName;
 
-    public IssuingBank(Long id, String bic, String bin, String abbreviatedName) {
-        this.id = id;
+    public IssuingBank(String bic, String bin, String abbreviatedName) {
         this.bic = bic;
         this.bin = bin;
         this.abbreviatedName = abbreviatedName;

@@ -40,8 +40,7 @@ public class Transaction {
     @Column(name="sent_to_issuing_bank")
     private Timestamp sentToIssuingBank;
 
-    public Transaction(Long id, LocalDate transactionDate, Double sum, String transactionName, Account accountId, TransactionType transactionTypeId, Card cardId, Terminal terminalId, ResponseCode responseCodeId, String authorizationCode, Timestamp receivedFromIssuingBank, Timestamp sentToIssuingBank) {
-        this.id = id;
+    public Transaction(LocalDate transactionDate, Double sum, String transactionName, Account accountId, TransactionType transactionTypeId, Card cardId, Terminal terminalId, ResponseCode responseCodeId, String authorizationCode, Timestamp receivedFromIssuingBank, Timestamp sentToIssuingBank) {
         this.transactionDate = transactionDate;
         this.sum = sum;
         this.transactionName = transactionName;

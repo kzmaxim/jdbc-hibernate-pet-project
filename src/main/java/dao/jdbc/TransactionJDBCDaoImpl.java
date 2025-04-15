@@ -3,7 +3,7 @@ package dao.jdbc;
 import main.java.configuration.JDBCConfig;
 import dao.Dao;
 import exception.DaoException;
-import model.Transaction;
+import model.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -118,11 +118,11 @@ public class TransactionJDBCDaoImpl implements Dao<Transaction> {
             preparedStatement.setDate(1, Date.valueOf(entity.getTransactionDate()));
             preparedStatement.setDouble(2, entity.getSum());
             preparedStatement.setString(3, entity.getTransactionName());
-            preparedStatement.setLong(4, entity.getAccountId());
-            preparedStatement.setLong(5, entity.getTransactionTypeId());
-            preparedStatement.setLong(6, entity.getCardId());
-            preparedStatement.setLong(7, entity.getTerminalId());
-            preparedStatement.setLong(8, entity.getResponseCodeId());
+            preparedStatement.setObject(4, entity.getAccountId());
+            preparedStatement.setObject(5, entity.getTransactionTypeId());
+            preparedStatement.setObject(6, entity.getCardId());
+            preparedStatement.setObject(7, entity.getTerminalId());
+            preparedStatement.setObject(8, entity.getResponseCodeId());
             preparedStatement.setString(9, entity.getAuthorizationCode());
             preparedStatement.setTimestamp(10, entity.getReceivedFromIssuingBank());
             preparedStatement.setTimestamp(11, entity.getSentToIssuingBank());
@@ -152,15 +152,14 @@ public class TransactionJDBCDaoImpl implements Dao<Transaction> {
             List<Transaction> list = new ArrayList<>();
             while(resultSet.next()) {
                 list.add(new Transaction(
-                        resultSet.getLong("id"),
                         resultSet.getDate("transaction_date").toLocalDate(),
                         resultSet.getDouble("sum"),
                         resultSet.getString("transaction_name"),
-                        resultSet.getLong("account_id"),
-                        resultSet.getLong("transaction_type_id"),
-                        resultSet.getLong("card_id"),
-                        resultSet.getLong("terminal_id"),
-                        resultSet.getLong("response_code_id"),
+                        resultSet.getObject("account_id", Account.class),
+                        resultSet.getObject("transaction_type_id", TransactionType.class),
+                        resultSet.getObject("card_id", Card.class),
+                        resultSet.getObject("terminal_id", Terminal.class),
+                        resultSet.getObject("response_code_id", ResponseCode.class),
                         resultSet.getString("authorization_code"),
                         resultSet.getTimestamp("received_from_issuing_bank"),
                         resultSet.getTimestamp("sent_to_issuing_bank")
@@ -180,15 +179,14 @@ public class TransactionJDBCDaoImpl implements Dao<Transaction> {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 return Optional.of(new Transaction(
-                        resultSet.getLong("id"),
                         resultSet.getDate("transaction_date").toLocalDate(),
                         resultSet.getDouble("sum"),
                         resultSet.getString("transaction_name"),
-                        resultSet.getLong("account_id"),
-                        resultSet.getLong("transaction_type_id"),
-                        resultSet.getLong("card_id"),
-                        resultSet.getLong("terminal_id"),
-                        resultSet.getLong("response_code_id"),
+                        resultSet.getObject("account_id", Account.class),
+                        resultSet.getObject("transaction_type_id", TransactionType.class),
+                        resultSet.getObject("card_id", Card.class),
+                        resultSet.getObject("terminal_id", Terminal.class),
+                        resultSet.getObject("response_code_id", ResponseCode.class),
                         resultSet.getString("authorization_code"),
                         resultSet.getTimestamp("received_from_issuing_bank"),
                         resultSet.getTimestamp("sent_to_issuing_bank")
@@ -207,11 +205,11 @@ public class TransactionJDBCDaoImpl implements Dao<Transaction> {
             preparedStatement.setDate(1, Date.valueOf(entity.getTransactionDate()));
             preparedStatement.setDouble(2, entity.getSum());
             preparedStatement.setString(3, entity.getTransactionName());
-            preparedStatement.setLong(4, entity.getAccountId());
-            preparedStatement.setLong(5, entity.getTransactionTypeId());
-            preparedStatement.setLong(6, entity.getCardId());
-            preparedStatement.setLong(7, entity.getTerminalId());
-            preparedStatement.setLong(8, entity.getResponseCodeId());
+            preparedStatement.setObject(4, entity.getAccountId());
+            preparedStatement.setObject(5, entity.getTransactionTypeId());
+            preparedStatement.setObject(6, entity.getCardId());
+            preparedStatement.setObject(7, entity.getTerminalId());
+            preparedStatement.setObject(8, entity.getResponseCodeId());
             preparedStatement.setString(9, entity.getAuthorizationCode());
             preparedStatement.setTimestamp(10, entity.getReceivedFromIssuingBank());
             preparedStatement.setTimestamp(11, entity.getSentToIssuingBank());

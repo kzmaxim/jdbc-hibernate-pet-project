@@ -120,7 +120,6 @@ public class TransactionTypeJDBCDaoImpl implements Dao<TransactionType> {
             List<TransactionType> list = new ArrayList<>();
             while(resultSet.next()) {
                 list.add(new TransactionType(
-                        resultSet.getLong("id"),
                         resultSet.getString("transaction_type_name"),
                         resultSet.getString("operator")
                 ));
@@ -139,7 +138,6 @@ public class TransactionTypeJDBCDaoImpl implements Dao<TransactionType> {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 return Optional.of(new TransactionType(
-                        resultSet.getLong("id"),
                         resultSet.getString("transaction_type_name"),
                         resultSet.getString("operator")
                 ));

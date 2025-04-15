@@ -127,7 +127,6 @@ public class ResponseCodeJDBCDaoImpl implements Dao<ResponseCode> {
             List<ResponseCode> list = new ArrayList<>();
             while(resultSet.next()) {
                 list.add(new ResponseCode(
-                        resultSet.getLong("id"),
                         resultSet.getString("error_code"),
                         resultSet.getString("error_description"),
                         resultSet.getString("error_level")
@@ -147,7 +146,6 @@ public class ResponseCodeJDBCDaoImpl implements Dao<ResponseCode> {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 return Optional.of(new ResponseCode(
-                        resultSet.getLong("id"),
                         resultSet.getString("error_code"),
                         resultSet.getString("error_description"),
                         resultSet.getString("error_level")

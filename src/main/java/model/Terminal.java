@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Table(name="terminal")
 public class Terminal {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name="terminal_id")
     private String terminalId;
@@ -18,8 +18,8 @@ public class Terminal {
     @JoinColumn(name="pos_id")
     private SalesPoint posId;
 
-    public Terminal(Long id, String terminalId, MerchantCategoryCode mccId, SalesPoint posId) {
-        this.id = id;
+    public Terminal(String terminalId, MerchantCategoryCode mccId, SalesPoint posId) {
+        //this.id = id;
         this.terminalId = terminalId;
         this.mccId = mccId;
         this.posId = posId;

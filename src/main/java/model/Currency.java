@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Table(name="currency")
 public class Currency {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name="currency_digital_code")
     private String currencyDigitalCode;
@@ -16,8 +16,7 @@ public class Currency {
     @Column(name="currency_name")
     private String currencyName;
 
-    public Currency(Long id, String currencyDigitalCode, String currencyLetterCode, String currencyName) {
-        this.id = id;
+    public Currency(String currencyDigitalCode, String currencyLetterCode, String currencyName) {
         this.currencyDigitalCode = currencyDigitalCode;
         this.currencyLetterCode = currencyLetterCode;
         this.currencyName = currencyName;

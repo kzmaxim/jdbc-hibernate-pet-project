@@ -4,6 +4,8 @@ import main.java.configuration.JDBCConfig;
 import dao.Dao;
 import exception.DaoException;
 import model.Account;
+import model.Currency;
+import model.IssuingBank;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -103,8 +105,8 @@ public class AccountJDBCDaoImpl implements Dao<Account> {
             PreparedStatement preparedStatement = connection.prepareStatement(ADD_TO_TABLE_SQL)) {
             preparedStatement.setString(1, entity.getAccountNumber());
             preparedStatement.setDouble(2, entity.getBalance());
-            preparedStatement.setLong(3, entity.getCurrencyId());
-            preparedStatement.setLong(4, entity.getIssuingBankId());
+            preparedStatement.setObject(3, entity.getCurrencyId());
+            preparedStatement.setObject(4, entity.getIssuingBankId());
 
             return preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -131,11 +133,10 @@ public class AccountJDBCDaoImpl implements Dao<Account> {
             List<Account> list = new ArrayList<>();
             while(resultSet.next()) {
                 list.add(new Account(
-                        resultSet.getLong("id"),
                         resultSet.getString("account_number"),
                         resultSet.getDouble("balance"),
-                        resultSet.getLong("currency_id"),
-                        resultSet.getLong("issuing_bank_id")
+                        resultSet.getObject("currency_id", Currency.class),
+                        resultSet.getObject("issuing_bank_id", IssuingBank.class)
                 ));
             }
             return list;
@@ -152,11 +153,10 @@ public class AccountJDBCDaoImpl implements Dao<Account> {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 return Optional.of(new Account(
-                        resultSet.getLong("id"),
                         resultSet.getString("account_number"),
                         resultSet.getDouble("balance"),
-                        resultSet.getLong("currency_id"),
-                        resultSet.getLong("issuing_bank_id")
+                        resultSet.getObject("currency_id", Currency.class),
+                        resultSet.getObject("issuing_bank_id", IssuingBank.class)
                 ));
             }
             return Optional.empty();
@@ -171,8 +171,8 @@ public class AccountJDBCDaoImpl implements Dao<Account> {
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_SQL)) {
             preparedStatement.setString(1, entity.getAccountNumber());
             preparedStatement.setDouble(2, entity.getBalance());
-            preparedStatement.setLong(3, entity.getCurrencyId());
-            preparedStatement.setLong(4, entity.getIssuingBankId());
+            preparedStatement.setObject(3, entity.getCurrencyId());
+            preparedStatement.setObject(4, entity.getIssuingBankId());
             preparedStatement.setLong(5, entity.getId());
 
             preparedStatement.executeUpdate();

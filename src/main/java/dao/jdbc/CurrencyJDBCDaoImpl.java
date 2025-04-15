@@ -124,7 +124,7 @@ public class CurrencyJDBCDaoImpl implements Dao<Currency> {
                 List<Currency> list = new ArrayList<>();
                 while(resultSet.next()) {
                     list.add(new Currency(
-                            resultSet.getLong("id"),
+                            //resultSet.getLong("id"),
                             resultSet.getString("currency_digital_code"),
                             resultSet.getString("currency_letter_code"),
                             resultSet.getString("currency_name")
@@ -144,7 +144,7 @@ public class CurrencyJDBCDaoImpl implements Dao<Currency> {
                 ResultSet resultSet = preparedStatement.executeQuery();
                 if (resultSet.next()) {
                     return Optional.of(new Currency(
-                            resultSet.getLong("id"),
+                            //resultSet.getLong("id"),
                             resultSet.getString("currency_digital_code"),
                             resultSet.getString("currency_letter_code"),
                             resultSet.getString("currency_name")

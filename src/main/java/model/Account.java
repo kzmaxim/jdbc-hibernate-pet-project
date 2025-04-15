@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name="account")
 public class Account {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name="account_number")
     private String accountNumber;
@@ -19,8 +19,7 @@ public class Account {
     @JoinColumn(name = "issuing_bank_id")
     private IssuingBank issuingBankId;
 
-    public Account(Long id, String accountNumber, Double balance, Currency currencyId, IssuingBank issuingBankId) {
-        this.id = id;
+    public Account(String accountNumber, Double balance, Currency currencyId, IssuingBank issuingBankId) {
         this.accountNumber = accountNumber;
         this.balance = balance;
         this.currencyId = currencyId;

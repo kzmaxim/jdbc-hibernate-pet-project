@@ -3,6 +3,8 @@ package dao.jdbc;
 import main.java.configuration.JDBCConfig;
 import dao.Dao;
 import exception.DaoException;
+import model.MerchantCategoryCode;
+import model.SalesPoint;
 import model.Terminal;
 
 import java.sql.Connection;
@@ -100,8 +102,8 @@ public class TerminalJDBCDaoImpl implements Dao<Terminal> {
         try(Connection connection = JDBCConfig.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(ADD_TO_TABLE_SQL)) {
             preparedStatement.setString(1, entity.getTerminalId());
-            preparedStatement.setLong(2, entity.getMccId());
-            preparedStatement.setLong(3, entity.getPosId());
+            preparedStatement.setObject(2, entity.getMccId());
+            preparedStatement.setObject(3, entity.getPosId());
 
             return preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -128,10 +130,9 @@ public class TerminalJDBCDaoImpl implements Dao<Terminal> {
             List<Terminal> list = new ArrayList<>();
             while(resultSet.next()) {
                 list.add(new Terminal(
-                        resultSet.getLong("id"),
                         resultSet.getString("terminal_id"),
-                        resultSet.getLong("mcc_id"),
-                        resultSet.getLong("pos_id")
+                        resultSet.getObject("mcc_id", MerchantCategoryCode.class),
+                        resultSet.getObject("pos_id", SalesPoint.class)
                 ));
             }
             return list;
@@ -148,10 +149,9 @@ public class TerminalJDBCDaoImpl implements Dao<Terminal> {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 return Optional.of(new Terminal(
-                        resultSet.getLong("id"),
                         resultSet.getString("terminal_id"),
-                        resultSet.getLong("mcc_id"),
-                        resultSet.getLong("pos_id")
+                        resultSet.getObject("mcc_id", MerchantCategoryCode.class),
+                        resultSet.getObject("pos_id", SalesPoint.class)
                 ));
             }
             return Optional.empty();
@@ -165,8 +165,8 @@ public class TerminalJDBCDaoImpl implements Dao<Terminal> {
         try (Connection connection = JDBCConfig.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_SQL)) {
             preparedStatement.setString(1, entity.getTerminalId());
-            preparedStatement.setLong(2, entity.getMccId());
-            preparedStatement.setLong(3, entity.getPosId());
+            preparedStatement.setObject(2, entity.getMccId());
+            preparedStatement.setObject(3, entity.getPosId());
             preparedStatement.setLong(4, entity.getId());
 
             preparedStatement.executeUpdate();

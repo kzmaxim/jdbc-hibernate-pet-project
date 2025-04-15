@@ -14,8 +14,7 @@ public class TransactionType {
     @Column(name="operator")
     private String operator;
 
-    public TransactionType(Long id, String transactionTypeName, String operator) {
-        this.id = id;
+    public TransactionType(String transactionTypeName, String operator) {
         this.transactionTypeName = transactionTypeName;
         this.operator = operator;
     }

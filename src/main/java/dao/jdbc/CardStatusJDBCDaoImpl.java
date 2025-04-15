@@ -117,7 +117,7 @@ public class CardStatusJDBCDaoImpl implements Dao<CardStatus> {
             List<CardStatus> list = new ArrayList<>();
             while(resultSet.next()) {
                 list.add(new CardStatus(
-                        resultSet.getLong("id"),
+                        //resultSet.getLong("id"),
                         resultSet.getString("card_status_name")
                 ));
             }
@@ -135,7 +135,7 @@ public class CardStatusJDBCDaoImpl implements Dao<CardStatus> {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 return Optional.of(new CardStatus(
-                        resultSet.getLong("id"),
+                        //resultSet.getLong("id"),
                         resultSet.getString("card_status_name")
                 ));
             }

@@ -16,8 +16,8 @@ public class ResponseCode {
     @Column(name="error_level")
     private String errorLevel;
 
-    public ResponseCode(Long id, String errorCode, String errorDescription, String errorLevel) {
-        this.id = id;
+    public ResponseCode(String errorCode, String errorDescription, String errorLevel) {
+        //this.id = id;
         this.errorCode = errorCode;
         this.errorDescription = errorDescription;
         this.errorLevel = errorLevel;
