@@ -62,7 +62,7 @@ public class TerminalServiceImpl implements TerminalService {
             throw new IllegalArgumentException("Invalid POS ID");
         }
         return terminalDao.getAll().stream()
-                .filter(t -> posId.equals(t.getPosId()))
+                .filter(t -> t.getPosId() != null && posId.equals(t.getPosId().getId()))
                 .toList();
     }
 
@@ -72,9 +72,10 @@ public class TerminalServiceImpl implements TerminalService {
             throw new IllegalArgumentException("Invalid MCC ID");
         }
         return terminalDao.getAll().stream()
-                .filter(t -> mccId.equals(t.getMccId()))
+                .filter(t -> t.getMccId() != null && mccId.equals(t.getMccId().getId()))
                 .toList();
     }
+
 
     @Override
     public boolean validateTerminal(Terminal terminal) {

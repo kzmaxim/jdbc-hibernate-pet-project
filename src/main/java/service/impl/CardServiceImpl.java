@@ -13,12 +13,15 @@ import java.util.Optional;
 
 public class CardServiceImpl implements CardService {
     private final Dao<Card> cardDao;
+    private final Dao<CardStatus> cardStatusDao;
 
+    public CardServiceImpl(Dao<Card> cardDao, Dao<CardStatus> cardStatusDao) {
+        this.cardDao = cardDao;
+        this.cardStatusDao = cardStatusDao;
+    }
     public CardServiceImpl() {
         this.cardDao = new CardHibernateDaoImpl();
-    }
-    public CardServiceImpl(Dao<Card> cardDao) {
-        this.cardDao = cardDao;
+        this.cardStatusDao = new CardStatusHibernateDaoImpl();
     }
 
 
@@ -67,13 +70,14 @@ public class CardServiceImpl implements CardService {
         }
         List<Card> allCards = cardDao.getAll();
         return allCards.stream()
-                .filter(card -> card.getAccountId().equals(accountId))
+                .filter(card -> card.getAccountId().getId().equals(accountId))
                 .toList();
     }
 
+
+
     @Override
     public boolean blockCard(Long cardId, Long statusId) {
-        CardStatusHibernateDaoImpl cardStatusDao = new CardStatusHibernateDaoImpl();
         Optional<Card> cardOpt = cardDao.getById(cardId);
         if (cardOpt.isEmpty()) {
             return false;

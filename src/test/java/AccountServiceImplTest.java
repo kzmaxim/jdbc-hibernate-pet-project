@@ -126,8 +126,19 @@ public class AccountServiceImplTest {
     private Account createValidAccount() {
         Account account = new Account();
         account.setAccountNumber("12345678");
-        account.setCurrencyId( new Currency("840", "USD", "US Dollar"));
-        account.setIssuingBankId( new IssuingBank("041234569", "12345", "Test Bank"));
+
+
+        Currency currency = new Currency("840", "USD", "US Dollar");
+        currency.setId(1L);
+
+        account.setCurrencyId(currency);
+
+        IssuingBank issuingBank = new IssuingBank("041234569", "12345", "Test Bank");
+        issuingBank.setId(1L);
+
+        account.setIssuingBankId(issuingBank);
+
         return account;
     }
+
 }

@@ -63,9 +63,10 @@ public class SalesPointServiceImpl implements SalesPointService {
             throw new IllegalArgumentException("Invalid bank ID");
         }
         return salesPointDao.getAll().stream()
-                .filter(sp -> bankId.equals(sp.getAcquiringBankId()))
+                .filter(sp -> sp.getAcquiringBankId() != null && bankId.equals(sp.getAcquiringBankId().getId()))  // Сравниваем ID банка
                 .toList();
     }
+
 
     @Override
     public boolean validateSalesPoint(SalesPoint salesPoint) {

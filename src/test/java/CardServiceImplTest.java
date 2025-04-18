@@ -42,8 +42,10 @@ public class CardServiceImplTest {
     @BeforeEach
     void setUp() {
         mockCardDao = mock(Dao.class);
-        cardService = new CardServiceImpl(mockCardDao);
+        mockCardStatusDao = mock(Dao.class);  // Инициализируем мок для CardStatus Dao
+        cardService = new CardServiceImpl(mockCardDao, mockCardStatusDao);  // Передаем оба мока в конструктор CardServiceImpl
     }
+
 
     @Test
     void createCard_valid_callsAdd() {
@@ -102,7 +104,7 @@ public class CardServiceImplTest {
         cardService.clearAllCards();
         verify(mockCardDao).clearTable();
     }
-
+    //@Disabled
     @Test
     void getCardsByAccountId_returnsFilteredCards() {
         Account account = new Account();
@@ -114,9 +116,11 @@ public class CardServiceImplTest {
         card2.setAccountId(account);
 
         when(mockCardDao.getAll()).thenReturn(List.of(card1, card2));
+
         List<Card> result = cardService.getCardsByAccountId(1L);
         assertEquals(2, result.size());
     }
+
 
     @Test
     void getCardsByAccountId_invalid_throwsException() {
