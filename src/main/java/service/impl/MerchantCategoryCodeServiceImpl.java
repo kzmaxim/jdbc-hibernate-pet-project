@@ -15,6 +15,9 @@ public class MerchantCategoryCodeServiceImpl implements MerchantCategoryCodeServ
     public MerchantCategoryCodeServiceImpl() {
         this.mccDao = new MerchantCategoryCodeHibernateDaoImpl();
     }
+    public MerchantCategoryCodeServiceImpl(Dao<MerchantCategoryCode> mccDao) {
+        this.mccDao = mccDao;
+    }
 
     @Override
     public void createMCC(MerchantCategoryCode mcc) {

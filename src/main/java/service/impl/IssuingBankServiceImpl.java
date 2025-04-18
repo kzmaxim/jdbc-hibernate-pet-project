@@ -15,6 +15,9 @@ public class IssuingBankServiceImpl implements IssuingBankService {
     public IssuingBankServiceImpl() {
         this.issuingBankDao = new IssuingBankHibernateDaoImpl();
     }
+    public IssuingBankServiceImpl(Dao<IssuingBank> issuingBankDao) {
+        this.issuingBankDao = issuingBankDao;
+    }
 
     @Override
     public void createIssuingBank(IssuingBank issuingBank) {

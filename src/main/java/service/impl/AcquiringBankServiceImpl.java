@@ -15,6 +15,9 @@ public class AcquiringBankServiceImpl implements AcquiringBankService {
     public AcquiringBankServiceImpl() {
         this.acquiringBankDao = new AcquiringBankHibernateDaoImpl();
     }
+    public AcquiringBankServiceImpl(Dao<AcquiringBank> dao) {
+        this.acquiringBankDao = dao;
+    }
 
     @Override
     public void createAcquiringBank(AcquiringBank acquiringBank) {

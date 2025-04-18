@@ -14,6 +14,9 @@ public class TerminalServiceImpl implements TerminalService {
     public TerminalServiceImpl() {
         this.terminalDao = new TerminalJDBCDaoImpl();
     }
+    public TerminalServiceImpl(Dao<Terminal> terminalDao) {
+        this.terminalDao = terminalDao;
+    }
 
     @Override
     public void createTerminal(Terminal terminal) {

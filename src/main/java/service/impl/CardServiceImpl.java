@@ -17,6 +17,10 @@ public class CardServiceImpl implements CardService {
     public CardServiceImpl() {
         this.cardDao = new CardHibernateDaoImpl();
     }
+    public CardServiceImpl(Dao<Card> cardDao) {
+        this.cardDao = cardDao;
+    }
+
 
     @Override
     public void createCard(Card card) {

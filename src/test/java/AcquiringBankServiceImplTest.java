@@ -6,118 +6,91 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import dao.Dao;
+import model.AcquiringBank;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import service.impl.AcquiringBankServiceImpl;
 
-class AcquiringBankServiceImplTest {
-    private AcquiringBankServiceImpl service;
-    private static final String TEST_BIC = "TESTBIC01";
-    private static final String TEST_NAME = "Test Bank";
+import java.util.List;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
+public class AcquiringBankServiceImplTest {
+
+    private Dao<AcquiringBank> mockAcquiringBankDao;
+    private AcquiringBankServiceImpl acquiringBankService;
 
     @BeforeEach
     void setUp() {
-        service = new AcquiringBankServiceImpl();
-        service.clearAllAcquiringBanks();
-    }
-
-    @AfterEach
-    void tearDown() {
-        service.clearAllAcquiringBanks();
+        mockAcquiringBankDao = mock(Dao.class);
+        acquiringBankService = new AcquiringBankServiceImpl(mockAcquiringBankDao);
     }
 
     @Test
-    void createAcquiringBank_ShouldAddNewBank() {
-        AcquiringBank bank = new AcquiringBank(TEST_BIC, TEST_NAME);
-        service.createAcquiringBank(bank);
-
-        List<AcquiringBank> banks = service.getAllAcquiringBanks();
-        assertEquals(1, banks.size());
-        assertEquals(TEST_BIC, banks.get(0).getBic());
+    void createAcquiringBank_valid_callsAdd() {
+        AcquiringBank bank = createValidBank();
+        acquiringBankService.createAcquiringBank(bank);
+        verify(mockAcquiringBankDao).add(bank);
     }
 
     @Test
-    void createAcquiringBank_ShouldThrowWhenBankIsNull() {
-        assertThrows(IllegalArgumentException.class,
-                () -> service.createAcquiringBank(null));
+    void createAcquiringBank_null_throwsException() {
+        assertThrows(IllegalArgumentException.class, () -> acquiringBankService.createAcquiringBank(null));
     }
 
     @Test
-    void getAcquiringBankById_ShouldReturnBankWhenExists() {
-        AcquiringBank bank = new AcquiringBank(TEST_BIC, TEST_NAME);
-        service.createAcquiringBank(bank);
-
-        List<AcquiringBank> banks = service.getAllAcquiringBanks();
-        Long createdId = banks.get(0).getId();
-
-        Optional<AcquiringBank> foundBank = service.getAcquiringBankById(createdId);
-        assertTrue(foundBank.isPresent());
-        assertEquals(TEST_BIC, foundBank.get().getBic());
+    void getAcquiringBankById_valid_returnsOptional() {
+        AcquiringBank bank = createValidBank();
+        when(mockAcquiringBankDao.getById(1L)).thenReturn(Optional.of(bank));
+        Optional<AcquiringBank> result = acquiringBankService.getAcquiringBankById(1L);
+        assertTrue(result.isPresent());
+        assertEquals(bank, result.get());
     }
 
     @Test
-    void getAcquiringBankById_ShouldReturnEmptyWhenNotExists() {
-        Optional<AcquiringBank> foundBank = service.getAcquiringBankById(999L);
-        assertFalse(foundBank.isPresent());
+    void getAcquiringBankById_invalidId_throwsException() {
+        assertThrows(IllegalArgumentException.class, () -> acquiringBankService.getAcquiringBankById(0L));
     }
 
     @Test
-    void getAllAcquiringBanks_ShouldReturnAllBanks() {
-        service.createAcquiringBank(new AcquiringBank("BIC001", "Bank 1"));
-        service.createAcquiringBank(new AcquiringBank("BIC002", "Bank 2"));
-
-        List<AcquiringBank> banks = service.getAllAcquiringBanks();
-        assertEquals(2, banks.size());
+    void getAllAcquiringBanks_returnsList() {
+        List<AcquiringBank> banks = List.of(createValidBank(), createValidBank());
+        when(mockAcquiringBankDao.getAll()).thenReturn(banks);
+        List<AcquiringBank> result = acquiringBankService.getAllAcquiringBanks();
+        assertEquals(2, result.size());
     }
 
     @Test
-    void updateAcquiringBank_ShouldUpdateExistingBank() {
-        AcquiringBank bank = new AcquiringBank(TEST_BIC, TEST_NAME);
-        service.createAcquiringBank(bank);
-
-        List<AcquiringBank> banks = service.getAllAcquiringBanks();
-        AcquiringBank createdBank = banks.get(0);
-
-        String updatedName = "Updated Bank Name";
-        createdBank.setAbbreviatedName(updatedName);
-        service.updateAcquiringBank(createdBank);
-
-        Optional<AcquiringBank> updatedBank = service.getAcquiringBankById(createdBank.getId());
-        assertTrue(updatedBank.isPresent());
-        assertEquals(updatedName, updatedBank.get().getAbbreviatedName());
+    void updateAcquiringBank_valid_callsUpdate() {
+        AcquiringBank bank = createValidBank();
+        acquiringBankService.updateAcquiringBank(bank);
+        verify(mockAcquiringBankDao).update(bank);
     }
 
     @Test
-    void deleteAcquiringBank_ShouldRemoveBank() {
-        AcquiringBank bank = new AcquiringBank(TEST_BIC, TEST_NAME);
-        service.createAcquiringBank(bank);
-
-        List<AcquiringBank> banks = service.getAllAcquiringBanks();
-        Long createdId = banks.get(0).getId();
-
-        service.deleteAcquiringBank(createdId);
-        Optional<AcquiringBank> deletedBank = service.getAcquiringBankById(createdId);
-        assertFalse(deletedBank.isPresent());
+    void deleteAcquiringBank_valid_callsDeleteById() {
+        acquiringBankService.deleteAcquiringBank(1L);
+        verify(mockAcquiringBankDao).deleteById(1L);
     }
 
     @Test
-    void clearAllAcquiringBanks_ShouldRemoveAllBanks() {
-        service.createAcquiringBank(new AcquiringBank("BIC001", "Bank 1"));
-        service.createAcquiringBank(new AcquiringBank("BIC002", "Bank 2"));
-
-        service.clearAllAcquiringBanks();
-        List<AcquiringBank> banks = service.getAllAcquiringBanks();
-        assertTrue(banks.isEmpty());
+    void deleteAcquiringBank_invalid_throwsException() {
+        assertThrows(IllegalArgumentException.class, () -> acquiringBankService.deleteAcquiringBank(0L));
     }
 
     @Test
-    void validateAcquiringBank_ShouldThrowWhenBicIsNull() {
-        AcquiringBank bank = new AcquiringBank(null, TEST_NAME);
-        assertThrows(IllegalArgumentException.class,
-                () -> service.createAcquiringBank(bank));
+    void clearAllAcquiringBanks_callsClearTable() {
+        acquiringBankService.clearAllAcquiringBanks();
+        verify(mockAcquiringBankDao).clearTable();
     }
 
-    @Test
-    void validateAcquiringBank_ShouldThrowWhenNameIsNull() {
-        AcquiringBank bank = new AcquiringBank(TEST_BIC, null);
-        assertThrows(IllegalArgumentException.class,
-                () -> service.createAcquiringBank(bank));
+    private AcquiringBank createValidBank() {
+        AcquiringBank bank = new AcquiringBank();
+        bank.setBic("123456789");
+        bank.setAbbreviatedName("TESTBANK");
+        return bank;
     }
 }

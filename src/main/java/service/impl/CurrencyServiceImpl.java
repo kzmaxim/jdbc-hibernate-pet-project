@@ -15,6 +15,9 @@ public class CurrencyServiceImpl implements CurrencyService {
     public CurrencyServiceImpl() {
         this.currencyDao = new CurrencyHibernateDaoImpl();
     }
+    public CurrencyServiceImpl(Dao<Currency> currencyDao) {
+        this.currencyDao = currencyDao;
+    }
 
     @Override
     public void createCurrency(Currency currency) {

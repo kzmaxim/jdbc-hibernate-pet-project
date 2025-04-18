@@ -16,6 +16,9 @@ public class ResponseCodeServiceImpl implements ResponseCodeService {
     public ResponseCodeServiceImpl() {
         this.responseCodeDao = new ResponseCodeHibernateDaoImpl();
     }
+    public ResponseCodeServiceImpl(Dao<ResponseCode> responseCodeDao) {
+        this.responseCodeDao = responseCodeDao;
+    }
 
     @Override
     public void createResponseCode(ResponseCode responseCode) {

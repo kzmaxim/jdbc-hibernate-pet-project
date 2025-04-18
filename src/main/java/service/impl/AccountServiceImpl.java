@@ -15,6 +15,9 @@ public class AccountServiceImpl implements AccountService {
     public AccountServiceImpl() {
         this.accountDao = new AccountHibernateDaoImpl();
     }
+    public AccountServiceImpl(Dao<Account> accountDao) {
+        this.accountDao = accountDao;
+    }
 
     @Override
     public void createAccount(Account account) {

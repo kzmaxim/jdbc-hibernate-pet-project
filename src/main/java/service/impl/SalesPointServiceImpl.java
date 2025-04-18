@@ -15,6 +15,9 @@ public class SalesPointServiceImpl implements SalesPointService {
     public SalesPointServiceImpl() {
         this.salesPointDao = new SalesPointHibernateDaoImpl();
     }
+    public SalesPointServiceImpl(Dao<SalesPoint> salesPointDao) {
+        this.salesPointDao = salesPointDao;
+    }
 
     @Override
     public void createSalesPoint(SalesPoint salesPoint) {

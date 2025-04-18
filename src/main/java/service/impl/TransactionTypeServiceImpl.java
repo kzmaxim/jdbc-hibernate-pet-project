@@ -15,6 +15,9 @@ public class TransactionTypeServiceImpl implements TransactionTypeService {
     public TransactionTypeServiceImpl() {
         this.transactionTypeDao = new TransactionTypeHibernateDaoImpl();
     }
+    public TransactionTypeServiceImpl(Dao<TransactionType> transactionTypeDao) {
+        this.transactionTypeDao = transactionTypeDao;
+    }
 
     @Override
     public void createTransactionType(TransactionType transactionType) {

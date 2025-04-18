@@ -15,6 +15,9 @@ public class PaymentSystemServiceImpl implements PaymentSystemService {
     public PaymentSystemServiceImpl() {
         this.paymentSystemDao = new PaymentSystemHibernateDaoImpl();
     }
+    public PaymentSystemServiceImpl(Dao<PaymentSystem> paymentSystemDao) {
+        this.paymentSystemDao = paymentSystemDao;
+    }
 
     @Override
     public void createPaymentSystem(PaymentSystem paymentSystem) {

@@ -15,6 +15,9 @@ public class CardStatusServiceImpl implements CardStatusService {
     public CardStatusServiceImpl() {
         this.cardStatusDao = new CardStatusHibernateDaoImpl();
     }
+    public CardStatusServiceImpl(Dao<CardStatus> cardStatusDao) {
+        this.cardStatusDao = cardStatusDao;
+    }
 
     @Override
     public void createCardStatus(CardStatus cardStatus) {
